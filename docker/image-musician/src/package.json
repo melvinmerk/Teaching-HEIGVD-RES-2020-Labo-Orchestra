@@ -1,0 +1,16 @@
+{
+  "name": "src",
+  "version": "1.0.0",
+  "main": "musician.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "dgram": "^1.0.1",
+    "uuid": "^8.3.2",
+    "uuid4": "^2.0.2"
+  }
+}
