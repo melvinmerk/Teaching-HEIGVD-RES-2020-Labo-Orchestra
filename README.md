@@ -112,7 +112,7 @@ When you connect to the TCP interface of the **Auditor**, you should receive an 
 |Question | What **payload** should we put in the UDP datagrams? |
 | | We put an *UUID* and the *sound* played by that musician.  |
 |Question | What **data structures** do we need in the UDP sender and receiver? When will we update these data structures? When will we query these data structures? |
-| | *Enter your response here...* |
+| | We need a dictionary to get the sounds from an instrument, and vice-versa. Those 2 are created on the start of the app and aren't changed afterwards. |
 
 
 ## Task 2: implement a "musician" Node.js application
@@ -130,7 +130,7 @@ When you connect to the TCP interface of the **Auditor**, you should receive an 
 |Question | In JavaScript, how can we **generate a UUID** compliant with RFC4122? |
 | | Using the *uuid* package.  |
 |Question | In Node.js, how can we execute a function on a **periodic** basis? |
-| | Using ``setInterval(function, delay, args...)`.  |
+| | Using `setInterval(function, delay, args...)`.  |
 |Question | In Node.js, how can we **emit UDP datagrams**? |
 | | Using the package *dgram*. We need to create a socket with dgram, then we can send data using the send function of the socket. `socket.send(<message>, <offset>, <message.length>, <port>, <address>, <callback function>)`  |
 |Question | In Node.js, how can we **access the command line arguments**? |
@@ -160,15 +160,15 @@ When you connect to the TCP interface of the **Auditor**, you should receive an 
 | #  | Topic |
 | ---  | ---  |
 |Question | With Node.js, how can we listen for UDP datagrams in a multicast group? |
-| | *Enter your response here...*  |
+| | Using the *dgram* package we can create a socket and bind the socket to a port and using the `addMembership(address)` function we can listen to datagrams on the given multicast *address*.  |
 |Question | How can we use the `Map` built-in object introduced in ECMAScript 6 to implement a **dictionary**?  |
-| | *Enter your response here...* |
+| | We can use the UUID as a key for the Map, wich will work as a dictionary |
 |Question | How can we use the `Moment.js` npm module to help us with **date manipulations** and formatting?  |
-| | *Enter your response here...* |
+| | We can use it to easily format dates, and compare them, ie: using the `diff` function to compare 2 dates to get a delta. We use it like this in our code `(moment().diff(value.activeSince, 'seconds') >= 5)` this will compare the current "moment (now)" with the active since and compare in seconds, this way we can define if it has been 5 seconds since a musician was active. |
 |Question | When and how do we **get rid of inactive players**?  |
-| | *Enter your response here...* |
+| | After 5 seconds without we use the previous example code to define if its been 5 seconds, if so we just remove the musician from the map using `map.delete(key)`. |
 |Question | How do I implement a **simple TCP server** in Node.js?  |
-| | *Enter your response here...* |
+| | Using the `net` package. And create a server like this: `var serverTcp = net.createServer();`. After that we have to listen on a given port, and define our handlers for different signals, in our case for a `connection`. |
 
 
 ## Task 5: package the "auditor" app in a Docker image
@@ -176,7 +176,7 @@ When you connect to the TCP interface of the **Auditor**, you should receive an 
 | #  | Topic |
 | ---  | --- |
 |Question | How do we validate that the whole system works, once we have built our Docker image? |
-| | *Enter your response here...* |
+| | We run the validate.sh script, that will build our docker images, and run them. Then kill one at a time and wait > 5 seconds to see if our servers works as intended. |
 
 
 ## Constraints
