@@ -30,9 +30,15 @@ socket.on('message', function(message, src) {
     console.log("Received: " + message);
     const payload = JSON.parse(message);
 
+    var instru = instruments[payload.sound];
+    if(instru == null) {
+        console.log("invalid instrument received");
+        return;
+    }
+
     var musician = {
         uuid: payload.uuid,
-        instrument: instruments[payload.sound],
+        instrument: instru,
         activeSince: moment().format()
     }
 

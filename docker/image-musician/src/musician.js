@@ -16,8 +16,7 @@ const sounds = {
     violin: 'gzi-gzi',
     drum: 'boum-boum'
  };
- 
-console.log(process.argv.length);
+
 if(process.argv.length != 3) {
     console.log("Missing or too many arguments.");
     process.exit(1);
@@ -26,8 +25,8 @@ if(process.argv.length != 3) {
 const sound = sounds[process.argv[2]];
 
 if(sound == null) {
-console.log("Invalid instrument. Must be: piano, trumpet, flute, violin, drum");
-process.exit(1);
+    console.log("Invalid instrument. Must be: piano, trumpet, flute, violin, drum");
+    process.exit(1);
 }
 
 // Get id
