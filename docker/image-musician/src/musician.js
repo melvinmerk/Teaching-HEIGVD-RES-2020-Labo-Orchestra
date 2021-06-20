@@ -5,9 +5,9 @@ const {v4 : uuidv4} = require('uuid');
 
 // delay between each sound
 const DELAY = 1000;
-const PORT = 9907;
+const PORT_UDP = 9907;
 // Multicast address
-const ADDRESS = '239.255.22.5';
+const ADDRESS_MULTICAST = '239.255.22.5';
 
 const sounds = {
     piano: 'ti-ta-ti',
@@ -39,11 +39,10 @@ setInterval(() => playSound(id, sound), DELAY);
 function playSound (id, sound) {
     const payload = {
         uuid: id,
-        sound: sound,
-        activeSince: new Date().toISOString()
+        sound: sound
     }
 
     const message = JSON.stringify(payload);
-    socket.send(message, 0, message.length, PORT, ADDRESS, console.log("Sending: " + message));
+    socket.send(message, 0, message.length, PORT_UDP, ADDRESS_MULTICAST, console.log("Sending: " + message));
 }
 
