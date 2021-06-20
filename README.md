@@ -104,13 +104,13 @@ When you connect to the TCP interface of the **Auditor**, you should receive an 
 | #  | Topic |
 | --- | --- |
 |Question | How can we represent the system in an **architecture diagram**, which gives information both about the Docker containers, the communication protocols and the commands? |
-| | *Insert your diagram here...* |
+| | ![image](images/Diag.png) |
 |Question | Who is going to **send UDP datagrams** and **when**? |
-| | *Enter your response here...* |
+| | All musicians will send UDP datagrams, every second. |
 |Question | Who is going to **listen for UDP datagrams** and what should happen when a datagram is received? |
-| | *Enter your response here...* |
+| | The auditor will listen for UDP datagrams, when a datagram is received a list of active musician is updated.  |
 |Question | What **payload** should we put in the UDP datagrams? |
-| | *Enter your response here...* |
+| | We put an *UUID* and the *sound* played by that musician.  |
 |Question | What **data structures** do we need in the UDP sender and receiver? When will we update these data structures? When will we query these data structures? |
 | | *Enter your response here...* |
 
@@ -120,21 +120,21 @@ When you connect to the TCP interface of the **Auditor**, you should receive an 
 | #  | Topic |
 | ---  | --- |
 |Question | In a JavaScript program, if we have an object, how can we **serialize it in JSON**? |
-| | *Enter your response here...*  |
+| | Using: `var json = JSON.stringify(object);`  |
 |Question | What is **npm**?  |
-| | *Enter your response here...*  |
+| | *node packet manager*, it handles all the dependencies for a nodejs app. (installing modules, etc...)  |
 |Question | What is the `npm install` command and what is the purpose of the `--save` flag?  |
-| | *Enter your response here...*  |
+| | This command install all the dependecies contained in package.json, or the given package like: `npm install uuid`. The `--save` flag is no longer used since npm 5.0.0 but it's purpose was to save the installed package to package.json  |
 |Question | How can we use the `https://www.npmjs.com/` web site?  |
-| | *Enter your response here...*  |
+| | We can use it to find packages for different features.  |
 |Question | In JavaScript, how can we **generate a UUID** compliant with RFC4122? |
-| | *Enter your response here...*  |
+| | Using the *uuid* package.  |
 |Question | In Node.js, how can we execute a function on a **periodic** basis? |
-| | *Enter your response here...*  |
+| | Using ``setInterval(function, delay, args...)`.  |
 |Question | In Node.js, how can we **emit UDP datagrams**? |
-| | *Enter your response here...*  |
+| | Using the package *dgram*. We need to create a socket with dgram, then we can send data using the send function of the socket. `socket.send(<message>, <offset>, <message.length>, <port>, <address>, <callback function>)`  |
 |Question | In Node.js, how can we **access the command line arguments**? |
-| | *Enter your response here...*  |
+| | With `process.argv` which is an array.  |
 
 
 ## Task 3: package the "musician" app in a Docker image
@@ -142,17 +142,17 @@ When you connect to the TCP interface of the **Auditor**, you should receive an 
 | #  | Topic |
 | ---  | --- |
 |Question | How do we **define and build our own Docker image**?|
-| | *Enter your response here...*  |
+| | To define a docker image we use a Dockerfile we can then build our images using the command `docker build` |
 |Question | How can we use the `ENTRYPOINT` statement in our Dockerfile?  |
-| | *Enter your response here...*  |
+| | It's used to start an executable when we run our container |
 |Question | After building our Docker image, how do we use it to **run containers**?  |
-| | *Enter your response here...*  |
+| | Using the command `docker run <image_name>`  |
 |Question | How do we get the list of all **running containers**?  |
-| | *Enter your response here...*  |
+| | Using the command `docker ps`  |
 |Question | How do we **stop/kill** one running container?  |
-| | *Enter your response here...*  |
+| | Using the command `docker kill <container name or container id>`  |
 |Question | How can we check that our running containers are effectively sending UDP datagrams?  |
-| | *Enter your response here...*  |
+| | We can use a network analyzing tool such as `tcpdump` or `wireshark`  |
 
 
 ## Task 4: implement an "auditor" Node.js application
